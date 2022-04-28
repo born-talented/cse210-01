@@ -33,3 +33,13 @@ def has_winner(board):
             board[2] == board[5] == board[8] or
             board[0] == board[4] == board[8] or
             board[2] == board[4] == board[6])
+
+def make_move(player, board):
+    square = int(input(f"{player}'s turn to choose a square (1-9): "))
+    board[square - 1] = player
+
+def next_player(current):
+    if current == "" or current == "o":
+        return "x"
+    elif current == "x":
+        return "o"
