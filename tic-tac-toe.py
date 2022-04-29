@@ -1,4 +1,12 @@
-#Tic-Tac-Toe game code
+# assignment: W02 Prove: Developer - Solo Code Submission
+# author: Adil rafi
+
+import time
+
+print("Welcome to the world of Tic Tac Toe")
+print()
+
+time.sleep(2)
 
 def main():
     player = next_player("")
@@ -8,9 +16,7 @@ def main():
         make_move(player, board)
         player = next_player(player)
     display_board(board)
-    print("Good game. Thanks for playing!")
-    
-
+    print("Yay! Good game. Thanks for playing!") 
 
 def create_board():
     board = []
@@ -21,18 +27,18 @@ def create_board():
 def display_board(board):
     print()
     print(f"{board[0]}|{board[1]}|{board[2]}")
-    print('-----')
+    print('-+-+-')
     print(f"{board[3]}|{board[4]}|{board[5]}")
-    print('-----')
+    print('-+-+-')
     print(f"{board[6]}|{board[7]}|{board[8]}")
     print()
-
+    
 def is_a_draw(board):
     for square in range(9):
         if board[square] != "x" and board[square] != "o":
             return False
-    return True
-
+    return True 
+    
 def has_winner(board):
     return (board[0] == board[1] == board[2] or
             board[3] == board[4] == board[5] or
