@@ -11,12 +11,12 @@ time.sleep(2)
 def main():
     player = next_player("")
     board = create_board()
-    while not (has_winner(board) or is_a_draw(board)):
-        display_board(board)
+    while not (check_for_winner(board) or is_a_draw(board)):
+        print_board(board)
         make_move(player, board)
         player = next_player(player)
-    display_board(board)
-    print("Yay! Good game. Thanks for playing!") 
+    print_board(board)
+    print("Well Played!") 
 
 def create_board():
     board = []
@@ -24,7 +24,7 @@ def create_board():
         board.append(square + 1)
     return board
 
-def display_board(board):
+def print_board(board):
     print()
     print(f"{board[0]}|{board[1]}|{board[2]}")
     print('-+-+-')
@@ -39,15 +39,33 @@ def is_a_draw(board):
             return False
     return True 
     
-def has_winner(board):
-    return (board[0] == board[1] == board[2] or
-            board[3] == board[4] == board[5] or
-            board[6] == board[7] == board[8] or
-            board[0] == board[3] == board[6] or
-            board[1] == board[4] == board[7] or
-            board[2] == board[5] == board[8] or
-            board[0] == board[4] == board[8] or
-            board[2] == board[4] == board[6])
+
+def check_for_winner(board):
+    global winner
+    if board[0] == board[1] == board[2] and board[0] != "-":
+        winner = board[0]
+        return True
+    elif board[3] == board[4] == board[5] and board[3] != "-":
+        winner = board[3]
+        return True
+    elif board[6] == board[7] == board[8] and board[6] != "-":
+        winner = board[6]
+        return True
+    elif board[0] == board[3] == board[6] and board[0] != "-":
+        winner = board[0]
+        return True
+    elif board[1] == board[4] == board[7] and board[1] != "-":
+        winner = board[1]
+        return True
+    elif board[2] == board[5] == board[8] and board[2] != "-":
+        winner = board[3]
+        return True
+    elif board[0] == board[4] == board[8] and board[0] != "-":
+        winner = board[0]
+        return True
+    elif board[2] == board[4] == board[6] and board[4] != "-":
+        winner = board[2]
+        return True
 
 def make_move(player, board):
     square = int(input(f"{player}'s turn to choose a square (1-9): "))
